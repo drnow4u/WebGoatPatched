@@ -31,6 +31,7 @@
 package org.owasp.webgoat.container;
 
 import lombok.AllArgsConstructor;
+import org.owasp.webgoat.CspPolicyConfig;
 import org.owasp.webgoat.container.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -81,6 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     http.headers().cacheControl().disable();
     http.exceptionHandling().authenticationEntryPoint(new AjaxAuthenticationEntryPoint("/login"));
+    CspPolicyConfig.setupSecurityHeaders(http);
   }
 
   @Autowired
