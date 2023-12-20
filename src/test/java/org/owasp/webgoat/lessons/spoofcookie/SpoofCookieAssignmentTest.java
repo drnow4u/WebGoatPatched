@@ -58,10 +58,8 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
 
   private MockMvc mockMvc;
   private static final String COOKIE_NAME = "spoof_auth";
-  private static final String LOGIN_CONTEXT_PATH = "/SpoofCookie/login";
-  private static final String ERASE_COOKIE_CONTEXT_PATH = "/SpoofCookie/cleanup";
 
-  @BeforeEach
+    @BeforeEach
   void setup() {
     SpoofCookieAssignment spoofCookieAssignment = new SpoofCookieAssignment();
     init(spoofCookieAssignment);
@@ -75,7 +73,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
 
     ResultActions result =
         mockMvc.perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .cookie(cookie)
                 .param("username", "")
                 .param("password", ""));
@@ -92,7 +90,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
 
     ResultActions result =
         mockMvc.perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .param("username", username)
                 .param("password", password));
 
@@ -113,7 +111,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
     Cookie cookie = new Cookie(COOKIE_NAME, cookieValue);
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .cookie(cookie)
                 .param("username", "")
                 .param("password", ""))
@@ -125,7 +123,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   void invalidLoginWithUnsatisfiedServletRequestParameterExceptionOnUsernameMissing()
       throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH).param("password", "anypassword"))
+        .perform(MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH).param("password", "anypassword"))
         .andExpect(status().is4xxClientError());
   }
 
@@ -134,7 +132,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   void invalidLoginWithUnsatisfiedServletRequestParameterExceptionOnPasswordMissing()
       throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH).param("username", "webgoat"))
+        .perform(MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH).param("username", "webgoat"))
         .andExpect(status().is4xxClientError());
   }
 
@@ -143,7 +141,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   void invalidLoginWithBlankCredentials() throws Exception {
     ResultActions result =
         mockMvc.perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .param("username", "")
                 .param("password", ""));
 
@@ -155,7 +153,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   void invalidLoginWithBlankPassword() throws Exception {
     ResultActions result =
         mockMvc.perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .param("username", "webgoat")
                 .param("password", ""));
 
@@ -167,7 +165,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   void cheat() throws Exception {
     ResultActions result =
         mockMvc.perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .param("username", "tom")
                 .param("password", "apasswordfortom"));
 
@@ -179,7 +177,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   void invalidTomLogin() throws Exception {
     ResultActions result =
         mockMvc.perform(
-            MockMvcRequestBuilders.post(LOGIN_CONTEXT_PATH)
+            MockMvcRequestBuilders.post(SpoofCookieAssignment.LOGIN_CONTEXT_PATH)
                 .param("username", "tom")
                 .param("password", ""));
 
@@ -190,7 +188,7 @@ class SpoofCookieAssignmentTest extends AssignmentEndpointTest {
   @DisplayName("Erase authentication cookie")
   void eraseAuthenticationCookie() throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.get(ERASE_COOKIE_CONTEXT_PATH))
+        .perform(MockMvcRequestBuilders.get(SpoofCookieAssignment.ERASE_COOKIE_CONTEXT_PATH))
         .andExpect(status().isOk())
         .andExpect(cookie().maxAge(COOKIE_NAME, 0))
         .andExpect(cookie().value(COOKIE_NAME, ""));
