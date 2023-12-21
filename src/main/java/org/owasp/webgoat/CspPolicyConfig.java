@@ -13,22 +13,22 @@ import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWrite
  * CSS, HTML frames, fonts, images and embeddable objects such as Java applets, ActiveX, audio and
  * video files.
  *
- * <p>CWE-693: Protection Mechanism Failure https://cwe.mitre.org/data/definitions/693.html WASC-15
- * http://projects.webappsec.org/w/page/13246914/Application%20Misconfiguration
+ * <p>CWE-693: Protection Mechanism Failure https://cwe.mitre.org/data/definitions/693.html
+ *
+ * <p>WASC-15: http://projects.webappsec.org/w/page/13246914/Application%20Misconfiguration
  *
  * <p>Solution: Ensure that your web server, application server, load balancer, etc. is configured
  * to set the Content-Security-Policy header.
  *
- * @see
- *     https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Introducing_Content_Security_Policy
- * @see https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html
- * @see http://www.w3.org/TR/CSP/
- * @see http://w3c.github.io/webappsec/specs/content-security-policy/csp-specification.dev.html
- * @see http://www.html5rocks.com/en/tutorials/security/content-security-policy/
- * @see http://caniuse.com/#feat=contentsecuritypolicy
- * @see http://content-security-policy.com/
- *     <p>OWASP_2021_A05 https://owasp.org/Top10/A05_2021-Security_Misconfiguration/ OWASP_2017_A06
- *     https://owasp.org/www-project-top-ten/2017/A6_2017-Security_Misconfiguration.html
+ * @see <a
+ *     href="https://developer.mozilla.org/en-US/docs/Web/Security/CSP/Introducing_Content_Security_Policy">Content
+ *     Security Policy (CSP)</a> <a
+ *     href="https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html">Content
+ *     Security Policy Cheat Sheet</a> <a href="http://www.w3.org/TR/CSP/">Content Security Policy
+ *     Level 3</a> <a
+ *     href="http://www.html5rocks.com/en/tutorials/security/content-security-policy/">Content
+ *     security policy</a> <a href="http://content-security-policy.com/">Content Security Policy
+ *     Reference</a>
  */
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 // @EnableWebSecurity
