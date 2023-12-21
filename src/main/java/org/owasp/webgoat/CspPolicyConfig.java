@@ -31,7 +31,6 @@ import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWrite
  *     Reference</a>
  */
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-// @EnableWebSecurity
 public class CspPolicyConfig {
 
   private static final int LEAP_YEAR_IN_SECONDS = 366 * 24 * 60 * 60;
